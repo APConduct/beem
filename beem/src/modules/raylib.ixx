@@ -158,14 +158,14 @@ export namespace beem
             return Rectangle{x, y, width, height};
         });
 
-        module.set_function("DrawText", DrawText);
-        module.set_function("DrawTextEx", DrawTextEx);
-        module.set_function("MeasureText", MeasureText);
-        module.set_function("TextFormat", TextFormat);
-        module.set_function("TextSplit", TextSplit);
-        module.set_function("TextJoin", TextJoin);
-        module.set_function("TextLength", TextLength);
-        module.set_function("MeasureTextEx", MeasureTextEx);
+        module.set_function("draw_text", DrawText);
+        module.set_function("draw_text_ex", DrawTextEx);
+        module.set_function("measure_text", MeasureText);
+        module.set_function("text_format", TextFormat);
+        module.set_function("text_split", TextSplit);
+        module.set_function("text_join", TextJoin);
+        module.set_function("text_length", TextLength);
+        module.set_function("measure_text_ex", MeasureTextEx);
 
 
         module.new_usertype<Image>("Image",
