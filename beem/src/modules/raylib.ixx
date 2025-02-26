@@ -158,14 +158,6 @@ export namespace beem
             return Rectangle{x, y, width, height};
         });
 
-        module.set_function("draw_text", DrawText);
-        module.set_function("draw_text_ex", DrawTextEx);
-        module.set_function("measure_text", MeasureText);
-        module.set_function("text_format", TextFormat);
-        module.set_function("text_split", TextSplit);
-        module.set_function("text_join", TextJoin);
-        module.set_function("text_length", TextLength);
-        module.set_function("measure_text_ex", MeasureTextEx);
 
 
         module.new_usertype<Image>("Image",
@@ -501,6 +493,15 @@ export namespace beem
         module.set_function("get_monitor_width", &GetMonitorWidth);
         module.set_function("get_monitor_height", &GetMonitorHeight);
         module.set_function("get_monitor_x", &GetMasterVolume);
+        module.set_function("draw_text", DrawText);
+        module.set_function("draw_text_ex", DrawTextEx);
+        module.set_function("measure_text", MeasureText);
+        module.set_function("text_format", TextFormat);
+        module.set_function("text_split", TextSplit);
+        module.set_function("text_join", TextJoin);
+        module.set_function("text_length", TextLength);
+        module.set_function("measure_text_ex", MeasureTextEx);
+
 
 
     }
