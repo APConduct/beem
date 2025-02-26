@@ -17,9 +17,27 @@ build = {
    type = "cmake",
    variables = {
       CMAKE_INSTALL_PREFIX = "$(PREFIX)",
-      LUA_INCLUDE_DIR = "/opt/homebrew/opt/luajit/include/luajit-2.1",
-      LUA_LIBRARY = "/opt/homebrew/opt/luajit/lib",
       BUILD_SHARED_LIBS = "ON",
-      CMAKE_BUILD_TYPE = "Release"
+      CMAKE_BUILD_TYPE = "Release",
+      CMAKE_GENERATOR = "Ninja"
+   },
+   platforms = {
+      unix = {
+         variables = {
+            CMAKE_C_FLAGS = "-fPIC",
+            CMAKE_CXX_FLAGS = "-fPIC"
+         }
+      },
+      macosx = {
+         variables = {
+            CMAKE_C_FLAGS = "-fPIC",
+            CMAKE_CXX_FLAGS = "-fPIC"
+         }
+      },
+      windows = {
+         variables = {
+            CMAKE_GENERATOR = "Ninja"
+         }
+      }
    }
 }

@@ -29,7 +29,12 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(sol2)
 
-
+FetchContent_Declare(
+        tinyfd
+        GIT_REPOSITORY https://git.code.sf.net/p/tinyfiledialogs/code tinyfiledialogs-code
+        GIT_TAG master
+)
+FetchContent_MakeAvailable(tinyfd)
 
 FetchContent_Declare(
         raylib
