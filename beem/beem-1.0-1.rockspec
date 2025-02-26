@@ -18,8 +18,7 @@ build = {
    variables = {
       CMAKE_INSTALL_PREFIX = "$(PREFIX)",
       BUILD_SHARED_LIBS = "ON",
-      CMAKE_BUILD_TYPE = "Release",
-      CMAKE_GENERATOR = "Ninja"
+      CMAKE_BUILD_TYPE = "Release"
    },
    platforms = {
       unix = {
@@ -32,11 +31,6 @@ build = {
          variables = {
             CMAKE_C_FLAGS = "-fPIC",
             CMAKE_CXX_FLAGS = "-fPIC"
-         }
-      },
-      windows = {
-         variables = {
-            CMAKE_GENERATOR = "Ninja"
          }
       }
    }

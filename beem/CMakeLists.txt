@@ -36,6 +36,11 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(tinyfd)
 
+set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(BUILD_GAMES    OFF CACHE BOOL "" FORCE)
+set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
+
+
 FetchContent_Declare(
         raylib
         DOWNLOAD_EXTRACT_TIMESTAMP OFF
@@ -82,3 +87,8 @@ install(TARGETS beem
 install(FILES beem/init.lua
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/lua/5.1/beem
 )
+
+if(APPLE)
+    install(FILES ${CMAKE_BINARY_DIR}/_deps/raylib-build/raylib/libraylib.dylib
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}/lua/5.1)
+endif()
