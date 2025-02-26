@@ -1,26 +1,16 @@
+//
+// Created by Aidan Jost on 2/26/25.
+//
+module;
 #include <sol/sol.hpp>
-#include <cmath>
+export module beem;
 
-struct Point
+export import raylib;
+export import euclid;
+
+export namespace beem
 {
-    double x, y;
-
-    explicit Point(double x_ = 0, double y_ = 0) : x(x_), y(y_) {}
-
-    [[nodiscard]] double distance_to(const Point& other) const
-    {
-        double dx = x - other.x;
-        double dy = y - other.y;
-        return std::sqrt(dx * dx + dy * dy);
-    }
-
-    [[nodiscard]] double get_x() const { return x; }
-    void set_x(double x_) { x = x_; }
-    [[nodiscard]] double get_y() const { return y; }
-    void set_y(double y_) { y = y_; }
-};
-
-extern "C"
+    extern "C"
 {
     __attribute__((visibility("default"))) int luaopen_beem(lua_State* L) {
         sol::state_view lua(L);
@@ -34,8 +24,9 @@ extern "C"
             "distance_to", &Point::distance_to
         );
 
+        RaylibModule::register_module(module);
+
         return module.push();
     }
 }
-
-
+}

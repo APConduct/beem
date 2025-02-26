@@ -1,11 +1,19 @@
 cmake_minimum_required(VERSION 3.28)
 project(beem)
 
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE__CXX_STANDARD_REQUIRED ON)
 
+if(APPLE)
+    set(CMAKE_CXX_COMPILER "/opt/homebrew/opt/llvm/bin/clang++")
+    set(CMAKE_C_COMPILER "/opt/homebrew/opt/llvm/bin/clang")
+endif ()
+
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     add_compile_options(-fexperimental-library)
+    add_compile_options(-fmodules)
+    set(CMAKE_CXX_SCAN_FOR_MODULES ON)
 endif ()
 
 find_package(PkgConfig REQUIRED)
@@ -52,7 +60,21 @@ FetchContent_MakeAvailable(raylib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 
-add_library(beem SHARED src/beem.cpp include/beem.hpp)
+if (CMAKE_COMPILER_ID MATCHES "Clang")
+        add_compile_options(-fmodules)
+endif ()
+
+add_library(beem SHARED include/beem.hpp)
+target_sources(beem
+        PUBLIC
+        FILE_SET CXX_MODULES
+        FILES
+        src/modules/raylib.ixx
+        src/modules/beem.ixx
+        src/modules/euclid.ixx
+
+
+)
 if(APPLE)
     set(CMAKE_SHARED_LIBRARY_SUFFIX ".dylib")
     set_target_properties(beem PROPERTIES

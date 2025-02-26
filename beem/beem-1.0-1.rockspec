@@ -18,19 +18,23 @@ build = {
    variables = {
       CMAKE_INSTALL_PREFIX = "$(PREFIX)",
       BUILD_SHARED_LIBS = "ON",
-      CMAKE_BUILD_TYPE = "Release"
+      CMAKE_BUILD_TYPE = "Release",
+      CMAKE_GENERATOR = "Ninja"
+
    },
    platforms = {
       unix = {
          variables = {
-            CMAKE_C_FLAGS = "-fPIC",
-            CMAKE_CXX_FLAGS = "-fPIC"
+            CMAKE_GENERATOR = "Ninja"
+
          }
       },
       macosx = {
          variables = {
-            CMAKE_C_FLAGS = "-fPIC",
-            CMAKE_CXX_FLAGS = "-fPIC"
+            CMAKE_GENERATOR = "Ninja",
+            CMAKE_CXX_COMPILER = "/opt/homebrew/opt/llvm/bin/clang++",
+            CMAKE_C_COMPILER = "/opt/homebrew/opt/llvm/bin/clang"
+
          }
       }
    }
